@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS_1</title>
+</head>
+<body>
+    <div id="main1" style="display: flex;gap:200px;border: 2px solid red;width:1000px;padding:10px">
+        <div id="main2" style="border: 1px solid black;padding:5px;height:350px;">
+            <h1 style="text-align: center;color: red;">Registration Form</h1>
+            <form>
+                <label>User Name: </label>
+                <input type="text" placeholder="usename" style="margin-left: 45px;"> <br> <br>
+                <label>Email: </label>
+                <input type="email" placeholder="email" style="margin-left: 80px;"> <br> <br>
+                <label>Password: </label>
+                <input type="password" placeholder="password" style="margin-left: 57px;"> <br> <br>
+                <label>Confirm password: </label>
+                <input type="password" placeholder="confirm password" style="margin-left: 0px;"> <br> <br>
+                <label>Mobile Number: </label>
+                <input type="text" placeholder="mobile" style="margin-left: 16px;"> <br> <br> <br>
+                <input type="submit" style="margin-left: 90px;">
+            </form>
+        </div>
+        <div style="border: 1px solid black;padding:5px;">
+            <h1 style="text-align: center;color: red;padding:5px;">details</h1>
+            <div id="test" style="border: 1px solid black;height:265px;width:340px;overflow-y: scroll;padding:10px;"></div>
+        </div>
+    
+    </div>
+    <script>
+        // var input_getting=document.getElementsByTagName("input");
+        // var obj={
+        //     Name:input_getting[0].value,
+        //     Email:input_getting[1].value,
+        //     Pass:input_getting[2].value,
+        //     Confirm_Pass:input_getting[3].value,
+        //     Mobile:input_getting[4].value
+        // }
+        // var arr=JSON.parse(localStorage.getItem("details"))||[];
+        // arr.push(obj);
+        // localStorage.setItem("details",JSON.stringify(arr));
+
+
+
+        
+        var div_getting=document.getElementById("test");
+        // var div_create=document.createElement("div");
+        // div_getting.appendChild(div_create);
+
+        var input_getting=document.getElementsByTagName("input");
+        // here i am giving an event listener when the user submit the details, this will appear in the another div for every set of details.
+       
+        input_getting[5].addEventListener("click",(e)=>{
+            clear();
+            e.preventDefault();
+
+
+            // var input_getting=document.getElementsByTagName("input");
+            var obj={
+                Name:input_getting[0].value,
+                Email:input_getting[1].value,
+                Pass:input_getting[2].value,
+                Confirm_Pass:input_getting[3].value,
+                Mobile:input_getting[4].value
+            }
+            var arr=JSON.parse(localStorage.getItem("details1"))||[];
+            arr.push(obj);
+            localStorage.setItem("details1",JSON.stringify(arr));
+
+            var a=JSON.parse(localStorage.getItem("details1")) || [];
+            for(i=0;i<a.length;i++){
+                var div_create=document.createElement("div");
+                div_getting.appendChild(div_create);
+                div_create.style.backgroundColor="AliceBlue";
+                div_create.style.width="300px";
+                div_create.style.border="1px solid black";
+                div_create.style.marginTop="10px";
+
+                // Usename:-
+                var ul_create=document.createElement("ul");
+                div_create.appendChild(ul_create);
+                var li_create1=document.createElement("li");
+                ul_create.appendChild(li_create1);
+                li_create1.innerText=a[i]["Name"];
+
+                // Email:-
+                var li_create2=document.createElement("li");
+                ul_create.appendChild(li_create2);
+                li_create2.innerText=a[i]["Email"];
+
+                // Pass:-
+                var li_create3=document.createElement("li");
+                ul_create.appendChild(li_create3);
+                li_create3.innerText=a[i]["Pass"];
+
+                // confirm pass:-
+                var li_create4=document.createElement("li");
+                ul_create.appendChild(li_create4);
+                li_create4.innerText=a[i]["Confirm_Pass"];
+
+                // Mobile:-
+                var li_create5=document.createElement("li");
+                ul_create.appendChild(li_create5);
+                li_create5.innerText=a[i]["Mobile"];
+
+            }
+        });
+        function clear(){
+            div_getting.innerText="";
+        }
+
+
+    </script>
+</body>
+</html>
